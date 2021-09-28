@@ -15,6 +15,19 @@ Data Split is available on BaiduYun [here](https://pan.baidu.com/s/1AL3EcAbUXDsE
 
 In case of use, please cite our paper:
 
+Paper is available [here](https://arxiv.org/abs/2109.12548).
+
+Bibtex is here:
+
+    @misc{cheng2021disentangled,
+          title={Disentangled Feature Representation for Few-shot Image Classification}, 
+          author={Hao Cheng and Yufei Wang and Haoliang Li and Alex C. Kot and Bihan Wen},
+          year={2021},
+          eprint={2109.12548},
+          archivePrefix={arXiv},
+          primaryClass={cs.CV}
+    }
+
 
 ## Contact
 
