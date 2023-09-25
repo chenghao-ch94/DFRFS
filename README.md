@@ -12,7 +12,7 @@ The code repository for "Disentangled Feature Representation for Few-Shot Image 
 
 ## Abstract
 
-Learning the generalizable feature representation is critical for few-shot image classification. While recent works exploited task-specific feature embedding using meta-tasks for few-shot learning, they are limited in many challenging tasks as being distracted by the excursive features such as the background, domain, and style of the image samples. In this work, we propose a novel Disentangled Feature Representation framework, dubbed DFR, for few-shot learning applications. DFR can adaptively decouple the discriminative features that are modeled by the classification branch, from the class-irrelevant component of the variation branch. In general, most of the popular deep fewshot learning methods can be plugged in as the classification branch, thus DFR can boost their performance on various fewshot tasks. Furthermore, we propose a novel FS-DomainNet dataset based on DomainNet, for benchmarking the few-shot domain generalization tasks. We conducted extensive experiments to evaluate the proposed DFR on general, fine-grained, and cross-domain few-shot classification, as well as few-shot domain generalization, using the corresponding four benchmarks, i.e., mini-ImageNet, tiered-ImageNet, CUB, as well as the proposed FS-DomainNet. Thanks to the effective feature disentangling, the DFR-based few-shot classifiers achieved state-of-the-art results on all datasets.
+Learning the generalizable feature representation is critical for few-shot image classification. While recent works exploited task-specific feature embedding using meta-tasks for few-shot learning, they are limited in many challenging tasks as being distracted by the excursive features such as the background, domain, and style of the image samples. In this work, we propose a novel Disentangled Feature Representation framework, dubbed DFR, for few-shot learning applications. DFR can adaptively decouple the discriminative features that are modeled by the classification branch, from the class-irrelevant component of the variation branch. In general, most of the popular deep few-shot learning methods can be plugged in as the classification branch, thus DFR can boost their performance on various few-shot tasks. Furthermore, we propose a novel FS-DomainNet dataset based on DomainNet, for benchmarking the few-shot domain generalization tasks. We conducted extensive experiments to evaluate the proposed DFR on general, fine-grained, and cross-domain few-shot classification, as well as few-shot domain generalization, using the corresponding four benchmarks, i.e., mini-ImageNet, tiered-ImageNet, CUB, as well as the proposed FS-DomainNet. Thanks to the effective feature disentangling, the DFR-based few-shot classifiers achieved state-of-the-art results on all datasets.
 
 
 ## Prerequisites
@@ -39,7 +39,7 @@ The MiniImageNet dataset is a subset of the ImageNet that includes a total numbe
 [Caltech-UCSD Birds (CUB) 200-2011 dataset](http://www.vision.caltech.edu/visipedia/CUB-200-2011.html) is initially designed for fine-grained classification. It contains in total 11,788 images of birds over 200 species. On CUB, we randomly sampled 100 species as SEEN classes, and another two 50 species are used as two UNSEEN sets. We crop all images with given bounding boxes before training.
 
 ### TieredImageNet Dataset
-[TieredImageNet](https://github.com/renmengye/few-shot-ssl-public) is a large-scale dataset  with more categories, which contains 351, 97, and 160 categoriesfor model training, validation, and evaluation, respectively. The dataset can also be download from [here](https://github.com/kjunelee/MetaOptNet).
+[TieredImageNet](https://github.com/renmengye/few-shot-ssl-public) is a large-scale dataset  with more categories, which contains 351, 97, and 160 categories for model training, validation, and evaluation, respectively. The dataset can also be downloaded from [here](https://github.com/kjunelee/MetaOptNet).
 
 ### FS-DomainNet Dataset
 
@@ -96,7 +96,7 @@ The dataset directory should look like this:
 Please use **train_fsl.py** and follow the instructions below.
 
 
-## Training scripts for DFR (Here we take DFR+FEAT as example)
+## Training scripts for DFR (Here we take DFR+FEAT as an example)
 
 For example, to train the 1-shot/5-shot 5-way DFR with FEAT model with ResNet-12 backbone on MiniImageNet:
 
@@ -112,11 +112,11 @@ to train the 1-shot/5-shot 5-way DFR with FEAT model with ResNet-12 backbone on 
 
 to train the 1-shot/5-shot 5-way DFR with FEAT model with ResNet-12 backbone on CUB-200-2011:
 
-    Pretraining:
+Pretraining:
 
     $ python pretrain.py --lr 0.001 --batch_size 256 --max_epoch 600 --backbone_class Res12 --dataset CUB --schedule 200 300 400 500 550 580 --gamma 0.1
 
-    Meta-Training:
+Meta-Training:
 
     $ python train_fsl.py --gpu 0 --way 20 --shot 1 --step_size 20 --max_epoch 80 --balance 0.1 --lr 0.0005 --gamma 0.5 --dataset CUB --init_weights ./initialization/cub/max_acc_dist.pth --eval_way 5 --eval_shot 1
 
@@ -124,7 +124,7 @@ to train the 1-shot/5-shot 5-way DFR with FEAT model with ResNet-12 backbone on 
 
 to train the 1-shot/5-shot 5-way DFR with FEAT model with ResNet-12 backbone (Pretrained on Tiered-ImageNet Dataset) on FS-DomainNet:
 
-    Use ''tid'' to select the target domain.
+Use ''tid'' to select the target domain. (from 0 to 5)
 
     $ python train_fsl.py --gpu 0 --way 5 --lr 0.001 --step_size 20 --max_epoch 120 --eval_shot 1 --gamma 0.5 --init_weights ./initialization/tieredimagenet/Res12-pre.pth --dataset Domain_FS --eval_way 5 --eval_shot 1 --tid 0 
 
@@ -132,7 +132,7 @@ to train the 1-shot/5-shot 5-way DFR with FEAT model with ResNet-12 backbone (Pr
 
 ## Acknowledgment
 
-Our code builds upon the following code publicly available, and thank the following repos providing helpful components/functions in our work.
+Our code builds upon the following code publicly available, and thank the following repos for providing helpful components/functions in our work.
 
 - [ProtoNet](https://github.com/cyvius96/prototypical-network-pytorch)
 
