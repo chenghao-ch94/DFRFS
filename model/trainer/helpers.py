@@ -74,7 +74,7 @@ def get_dataloader(args):
                                     batch_sampler=train_sampler,
                                     pin_memory=True)
         
-        valset = Dataset(args.tid, 'test', args)
+        valset = Dataset(args.tid, 'val', args)
         val_sampler = CategoriesSampler_Dom(valset.label,
                                 args.num_eval_episodes,
                                 args.eval_way, args.eval_shot + args.eval_query,
