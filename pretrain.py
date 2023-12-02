@@ -156,15 +156,9 @@ if __name__ == '__main__':
             else:
                 data, label = batch
                 label = label.type(torch.LongTensor)
-            # m, logits = model(data)
-            logits, logits_am = model(data, label)
-
-            loss_am = F.softmax(logits_am, dim=1)
-            loss_am, _ = loss_am.max(dim=1)
-            # loss_am = loss_am * F.one_hot(label_aux, num_classes=args.way)
-            loss_am = loss_am.sum()/loss_am.shape[0]
-
-            loss = criterion(logits, label) + 0.2*loss_am
+                
+            logits = model(data)
+            loss = criterion(logits, label)
             acc = count_acc(logits, label)
             writer.add_scalar('data/loss', float(loss), global_count)
             writer.add_scalar('data/acc', float(acc), global_count)
